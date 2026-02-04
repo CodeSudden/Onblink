@@ -18,12 +18,24 @@ export async function login(email: string, password: string) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
+    credentials: "include",
   });
 
   if (!res.ok) {
     const err = await res.json();
     throw new Error(err.detail || "Login failed");
   }
-
-  return res.json(); // contains access_token
 }
+
+export async function logout() {
+  try {
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`, {
+      method: "POST",
+      credentials: "include",
+    });
+  } catch {}
+
+  window.location.href = "/login";
+}
+
+

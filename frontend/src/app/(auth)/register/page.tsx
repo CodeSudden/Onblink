@@ -34,7 +34,8 @@ export default function RegisterPage() {
         router.push("/login");
       }, 2000);
     } catch (err: any) {
-      setError(err.message || "Registration failed");
+      setError("Registration failed");
+      console.log(err.message);
     } finally {
       setLoading(false);
     }
@@ -88,7 +89,7 @@ export default function RegisterPage() {
               </div>
 
               {error && (
-                <p className="text-red-500 text-sm text-center">{error}</p>
+                <p className="text-white text-sm text-center bg-red-500 p-2 rounded-md">{error}</p>
               )}
 
               {success && (

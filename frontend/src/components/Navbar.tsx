@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from "react";
 import { FaUserCircle, FaBars, FaTimes } from "react-icons/fa";
 import logoText from "@/assets/logo-text.png";
 import Image from "next/image";
+import { logout } from "@/lib/auth";
 
 export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -14,8 +15,11 @@ export default function Navbar() {
 
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
+    const hasAccessToken = document.cookie
+      .split("; ")
+      .some((c) => c.startsWith("access_token="));
+
+    setIsLoggedIn(hasAccessToken);
   }, []);
 
   // Close dropdown if clicking outside
@@ -32,8 +36,8 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
+  const handleLogout = async () => {
+    await logout();
     setIsLoggedIn(false);
     setDropdownOpen(false);
     window.location.href = "/";

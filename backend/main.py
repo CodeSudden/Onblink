@@ -16,7 +16,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["http://localhost:3000"], #CRITICAL TO CHANGE MO NG URL MO e.g www.onblink.com
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -58,7 +58,7 @@ def shorten_url(
     })
 
     return {
-        "short_url": f"http://localhost:8000/{short_code}"
+        "short_url": f"http://localhost:3000/{short_code}"
     }
 
 @app.get("/{code}")

@@ -19,12 +19,13 @@ export default function LoginPage() {
   const handleLogin = async () => {
     setError("");
     setLoading(true);
+
     try {
-      const data = await login(email, password);
-      localStorage.setItem("token", data.access_token);
+      await login(email, password);
       router.push("/");
     } catch (err: any) {
-      setError(err.message);
+      setError("Unexpected Error logging in");
+      // console.log(err.mesage);
     } finally {
       setLoading(false);
     }
@@ -70,7 +71,7 @@ export default function LoginPage() {
               </div>
 
               {error && (
-                <p className="text-red-500 text-sm text-center">{error}</p>
+                <p className="text-white text-sm text-center bg-red-500 p-2 rounded-md">{error}</p>
               )}
 
               <button

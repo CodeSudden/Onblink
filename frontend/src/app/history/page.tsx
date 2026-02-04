@@ -55,7 +55,6 @@ export default function HistoryPage() {
       .then((res) => {
         setUrls(res.data);
         setPagination(res.pagination);
-        console.log(res);
       })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
