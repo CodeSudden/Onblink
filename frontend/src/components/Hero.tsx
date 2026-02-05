@@ -71,16 +71,13 @@ export default function Hero() {
       <div className="absolute top-10 left-10 w-40 h-40 bg-white opacity-10 rounded-full animate-pulse"></div>
       <div className="absolute bottom-20 right-16 w-56 h-56 bg-white opacity-5 rounded-full animate-pulse"></div>
 
-      {/* Floating rocket emoji */}
-      <div className="absolute top-30 right-20 text-white text-6xl opacity-20 animate-bounce">🚀</div>
-
       {/* Hero content */}
       <div className="relative z-10 w-full max-w-xl text-center space-y-8">
 
         {/* Hero Text */}
         <div className="space-y-3">
           <h1 className="text-5xl md:text-6xl font-extrabold text-shadow-lg text-white leading-tight animate-fadeIn">
-            Shorten URLs in seconds 🚀
+            Shorten URLs in seconds
           </h1>
           <p className="text-white text-shadow-lg text-lg md:text-xl animate-fadeIn delay-100">
             Free, fast, and no login required.

@@ -68,7 +68,7 @@ export default function HistoryPage() {
 
 
   const copyToClipboard = async (text: string) => {
-    const shortUrl = `http://localhost:3000/${text}`;
+    const shortUrl = `${process.env.NEXT_PUBLIC_API_URL}/${text}`;
 
     await navigator.clipboard.writeText(shortUrl);
     setCopied(text);

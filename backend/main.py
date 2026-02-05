@@ -4,6 +4,7 @@ from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 import string
 import random
+import os
 from routes.auth import router as auth_router
 from database import db
 from utils.deps import get_current_user_optional
@@ -11,12 +12,18 @@ from fastapi import Depends
 from fastapi import HTTPException
 from routes.url import router as url_router
 from datetime import datetime
+from dotenv import load_dotenv
+from fastapi.middleware.cors import CORSMiddleware
+
+load_dotenv()
+
+FRONTEND_URLS = os.getenv("FRONTEND_URLS", "").split(",")
 
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"], #CRITICAL TO CHANGE MO NG URL MO e.g www.onblink.com
+    allow_origins=FRONTEND_URLS, #CRITICAL TO CHANGE MO NG URL MO e.g www.onblink.com
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -58,7 +65,7 @@ def shorten_url(
     })
 
     return {
-        "short_url": f"http://localhost:3000/{short_code}"
+        "short_url": f"{FRONTEND_URLS[0]}/{short_code}"
     }
 
 @app.get("/{code}")
