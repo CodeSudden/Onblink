@@ -3,7 +3,6 @@
 import { useEffect, useState, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
 import { getHistory, deleteUrl, getHistoryStats } from "@/lib/urls";
 import {
   FaClipboard,
@@ -13,6 +12,7 @@ import {
   FaChartBar,
   FaEdit,
 } from "react-icons/fa";
+import { Search } from "lucide-react";
 
 const ITEMS_PER_PAGE = 5;
 
@@ -138,7 +138,12 @@ export default function HistoryPage() {
         {/* )} */}
 
         {/* Search */}
-        <div className="mb-6">
+        <div className="mb-6 relative">
+          <Search
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+            size={20}
+          />
+
           <input
             type="text"
             placeholder="Search short code or URL..."
@@ -147,7 +152,8 @@ export default function HistoryPage() {
               setSearch(e.target.value);
               setPage(1);
             }}
-            className="w-full px-4 text-black py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm"
+            className="w-full pl-10 pr-4 py-3 text-black rounded-lg border border-gray-300 bg-white
+                      focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm"
           />
         </div>
 
